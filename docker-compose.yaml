@@ -5,6 +5,7 @@ services:
      # - 3000:3000
   mongodb:
     image: mongo
+    restart: always
     ports:
       - 27017:27017
     environment:
@@ -16,7 +17,7 @@ services:
   mongo-express:
     image: mongo-express:latest
     ports:
-      - 8081:8081
+      - 8082:8081
     restart: always
     environment:
         - ME_CONFIG_MONGODB_URL=mongodb://pemb:Gloire06@mongodb:27017
