@@ -27,7 +27,7 @@ _NOTE: creating docker-network in optional. You can start both containers in a d
 
 Step 4: open mongo-express from browser
 
-    http://localhost:8081
+    http://localhost:8082
 
 Step 5: create `user-account` _db_ and `users` _collection_ in mongo-express
 
@@ -47,7 +47,7 @@ Step 7: Access you nodejs application UI from browser
 
 Step 1: start mongodb and mongo-express
 
-    docker-compose -f docker-compose.yaml up
+    docker-compose -f mongo-docker-compose.yaml up
     
 _You can access the mongo-express under localhost:8080 from your browser_
     
