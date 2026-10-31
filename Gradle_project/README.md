@@ -28,7 +28,7 @@ Maven_project/
 ├── application.properties
 └── logback.xml
 
-Commands used to build the application:
+Commands used to build the application.
 
 # To build the application I used the following commands:
     gradle build 
