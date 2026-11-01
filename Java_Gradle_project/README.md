@@ -1,8 +1,8 @@
 ##### build the project
 
 Technology Stack
-Java version 25 – Application development
-Gradle – Build automation and dependency management using IntelliJ
+Java version 25 – Application development.
+Gradle – Build automation and dependency management using IntelliJ.
 Created Sonatype Nexus Repository – Artifact management remote and locally using port # 
 Git & GitHub – Source code management to manage and share project
 PowerShell and git bash– Command-line environment to build and configure application
