@@ -1,4 +1,0 @@
-[submodule "js-app"]
-	path = js-app
-	url = https://github.com/mabialachance/DevOpsProjects.git
-	branch = master
