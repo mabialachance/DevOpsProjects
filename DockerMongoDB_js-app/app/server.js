@@ -21,10 +21,10 @@ app.get('/profile-picture', function (req, res) {
 });
 
 // use when starting application locally with node command
-let mongoUrlLocal = "mongodb://chance:Gloire06@localhost:27017";
+let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 
 // use when starting application as docker container, part of docker-compose
-let mongoUrlDockerCompose = "mongodb://chance:Gloire06@mongodb";
+let mongoUrlDockerCompose = "mongodb://admin:password@mongodb:27017";
 
 // "user-account" in demo with docker
 let databaseName = "user-account";
@@ -33,7 +33,7 @@ let collectionName = "users";
 app.get('/get-profile', async function (req, res) {
   let response = {};
   // Connect to the db using local application or docker compose variable in connection properties
-  let client = await MongoClient.connect(mongoUrlLocal);
+  let client = await MongoClient.connect(mongoUrlDockerCompose);
 
   let db = client.db(databaseName);
 
@@ -49,7 +49,7 @@ app.get('/get-profile', async function (req, res) {
 app.post('/update-profile', async function (req, res) {
   let userObj = req.body;
   // Connect to the db using local application or docker compose variable in connection properties
-  let client = await MongoClient.connect(mongoUrlLocal);
+  let client = await MongoClient.connect(mongoUrlDockerCompose);
 
   let db = client.db(databaseName);
   userObj['userid'] = 1;
@@ -64,6 +64,6 @@ app.post('/update-profile', async function (req, res) {
   res.send(userObj);
 });
 
-app.listen(3000, function () {
+app.listen(3000,'0.0.0.0', function () {
   console.log("app listening on port 3000!");
 });
