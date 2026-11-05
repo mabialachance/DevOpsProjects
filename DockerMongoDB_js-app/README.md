@@ -68,9 +68,11 @@ Step 5: access the nodejs application from browser
 
 #### To build a docker image from the application
 
-    docker build -t my-app:1.0 .       
+    docker build -t my-app:1.0 .
     
 The dot "." at the end of the command denotes location of the Dockerfile.
+### To run an application
+    docker run -t my-app:1.0
 
 ### Added mongo.yaml file to pull an image from nexus repository and build my-app in docker
 ``docker-compose -f mongo.yam up``
