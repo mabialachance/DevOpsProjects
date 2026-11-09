@@ -2,18 +2,26 @@
 # the app, its MongoDB database, and a web UI for managing the database
 
 services:
- # --- Application container ---
   my-app:
-    image: 192.168.4.74:8083/my-app:1.0                  # Pulled from the private Nexus Docker registry (host:port/image:tag)
+    container_name: my-app
+    image: 192.168.4.74:8083/my-app:1.0                  # Pulled from the private Nexus Docker registry (host:port/i>
+    build: .                      # builds from the Dockerfile in this folder
+    restart: on-failure           # retry if MongoDB isn't ready yet
     ports:
-     - 3000:3000                                         # HOST_PORT:CONTAINER_PORT, app reachable at localhost:3000
+      - 3000:3000
+    environment:
+      - MONGO_DB_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_DB_PWD=${MONGO_ROOT_PASSWORD}
+    depends_on:
+      - mongodb
   mongodb:
     image: mongo                                          # Official MongoDB image from Docker Hub (defaults to the latest tag)
     ports:
      - 27017:27017                                        # Default MongoDB port exposed to the host
     environment:
-     - MONGO_INITDB_ROOT_USERNAME=admin                   # Creates the root admin user on first startup
-     - MONGO_INITDB_ROOT_PASSWORD=password                # Root password (use secrets or an .env file in real setups)
+     - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}         # Read from .env
+     - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}     # Read from .env
+
     volumes:
      - mongo-data:/data/db                                # Named volume so data survives container restarts/removal
 
@@ -24,9 +32,9 @@ services:
     ports:
      - 8081:8081                                           # Web UI reachable at localhost:8081
     environment:
-     - ME_CONFIG_MONGODB_URL=mongodb://admin:password@mongodb:27017  # Connection string; "mongodb" is the service name, resolved via Docker's internal DNS
-     - ME_CONFIG_BASICAUTH_USERNAME=chancemab               # Login username for the Mongo Express web page
-     - ME_CONFIG_BASICAUTH_PASSWORD=password                # Login password for the Mongo Express web page
+     - ME_CONFIG_MONGODB_URL=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017
+     - ME_CONFIG_BASICAUTH_USERNAME=${ME_BASICAUTH_USER}
+     - ME_CONFIG_BASICAUTH_PASSWORD=${ME_BASICAUTH_PASSWORD}
     depends_on:
      - "mongodb"                                            # Start mongodb container first (controls start order only, not readiness)
 
