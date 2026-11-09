@@ -1,3 +1,8 @@
+// credentials injected by docker-compose from .env
+let mongoUser = process.env.MONGO_DB_USERNAME;
+let mongoPwd = process.env.MONGO_DB_PWD;
+
+
 let express = require('express');
 let path = require('path');
 let fs = require('fs');
@@ -21,11 +26,11 @@ app.get('/profile-picture', function (req, res) {
 });
 
 // use when starting application locally with node command
-let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
+let mongoUrlLocal = "mongodb://${mongoUser}:${mongoPwd}@localhost:27017";
+
 
 // use when starting application as docker container, part of docker-compose
-let mongoUrlDockerCompose = "mongodb://admin:password@mongodb:27017";
-
+let mongoUrlDockerCompose = `mongodb://${encodeURIComponent(mongoUser)}:${encodeURIComponent(mongoPwd)}@mongodb:27017`;
 // "user-account" in demo with docker
 let databaseName = "user-account";
 let collectionName = "users";
