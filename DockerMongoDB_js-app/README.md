@@ -1,5 +1,7 @@
 ## demo app - developing with Docker
 
+### Added Env folder to set credentials 
+
 This demo app shows a simple user profile app set up using 
 - index.html with pure js and css styles
 - nodejs backend with express module
@@ -18,9 +20,11 @@ Step 1: Create docker network
 Step 2: start mongodb 
 
     docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network mongo    
+### Username and password has been saved in hidden .Env folder to avoid exposing the password to a final image.
 
 Step 3: start mongo-express
-    
+### Username and password has been saved in hidden .Env folder to avoid exposing the password to a final image.
+
     docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --net mongo-network --name mongo-express -e ME_CONFIG_MONGODB_SERVER=mongodb -e ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017 mongo-express   
 
 _NOTE: creating docker-network in optional. You can start both containers in a default network. In this case, just emit `--net` flag in `docker run` command_
