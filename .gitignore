@@ -37,3 +37,4 @@ node_modules/
 .idea/*
 target
 >>>>>>> jenkins-jobs
+target/
