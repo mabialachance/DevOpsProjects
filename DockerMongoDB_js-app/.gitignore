@@ -6,3 +6,4 @@ node_modules
 mongo.yaml
 .mongo.yaml
 .env
+.env
