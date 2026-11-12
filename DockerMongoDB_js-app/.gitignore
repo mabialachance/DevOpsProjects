@@ -5,3 +5,4 @@ node_modules
 .idea/*
 mongo.yaml
 .mongo.yaml
+.env
