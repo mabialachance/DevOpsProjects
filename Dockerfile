@@ -1,4 +1,4 @@
-FROM amazoncorretto:17-alpine-jdk25
+FROM amazoncorretto:25-alpine3.24
 
 EXPOSE 8080
 
