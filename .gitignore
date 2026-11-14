@@ -1,5 +1,45 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+.DS_Store
+.idea/*
+.gradle
+build
+out
+target/
+=======
+node_modules
+
+.DS_Store
+
+.idea/*
+>>>>>>> origin/master
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# Node.js
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+=======
 .idea/*
 target
+<<<<<<< HEAD
 target/
 .idea/
+=======
+>>>>>>> jenkins-jobs
+>>>>>>> f38d9e0624c7fc8c52d474303a25054afc6af2e0
 target/
