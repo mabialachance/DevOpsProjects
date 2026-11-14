@@ -46,24 +46,26 @@ pipeline {
                 }
             }
         }
-        stage('commit version update'){
+        stage('commit version update') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
-                        sh 'git config --global user.email "jenkins@example.com"'
-                        sh 'git config --global user.name "jenkins"'
+                    sh 'git config --global user.email "jenkins@example.com"'
+                    sh 'git config --global user.name "jenkins"'
 
-                        sh 'git status'
-                        sh 'git branch'
-                        sh 'git config --list'
+                    sh 'git status'
+                    sh 'git branch'
 
-                        sh "git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/mabialachance/DevOpsProjects.git"
-                        sh 'git add .'
-                        sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:jenkins-jobs'
+                    sh 'git add .'
+                    sh 'git commit -m "ci: version bump"'
+
+                    withCredentials([gitUsernamePassword(
+                        credentialsId: 'github-credentials',
+                        gitToolName: 'Default'
+                    )]) {
+                        sh 'git push origin HEAD:refs/heads/jenkins-jobs'
                     }
                 }
             }
-         }
         }
     }
+}
