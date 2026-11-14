@@ -1,9 +1,13 @@
 # DevOpsProjects
+1. - PROJECT I - using Jenkins Freestyle
+2. - PROJECT 2 -using Jenkins CI/CD Pipeline
+
 
 Hands-on DevOps projects covering build automation, CI/CD, and container registries. 
-All three projects run in a single Jenkins job (`java-maven-build`) and build on each other.
+All three sub-projects run in a single Jenkins job (`java-maven-build`) and build on each other.
 
-## Projects
+## PROJECT I
+## The following instructions is used to build the project.
 
 1. [Java Maven App with Jenkins CI](#1-java-maven-app-with-jenkins-ci)
 2. [Docker Image Push to Docker Hub](#2-docker-image-push-to-docker-hub)
@@ -111,3 +115,137 @@ docker login 192.168.*.*:8083
 docker pull 192.168.*.*:8083/my-demo-ap:jma-1.1
 ```
 ``Notes`` The Ip address was changed and hidden on purpose.
+ 
+
+
+
+
+
+
+## PROJECT II - BUILD AUTOMATION PIPELINE JOB ##
+``` Instructios used to build the project:```
+
+
+# Java Maven Application – Jenkins CI/CD Pipeline
+
+## Overview
+
+This project demonstrates a Continuous Integration and Continuous Delivery (CI/CD) pipeline using Jenkins, Maven, Docker, GitHub, and Docker Hub.
+
+The pipeline automatically builds and tests a Java Maven application, creates a Docker image, and publishes the image to Docker Hub.
+
+## Technologies Used
+
+- Java 25
+- Apache Maven 3.9
+- Jenkins
+- Docker
+- Docker Hub
+- Git and GitHub
+- Groovy (Jenkins Pipeline)
+
+## CI/CD Workflow
+
+The pipeline follows these steps:
+
+1. **Source Code:** Retrieves the application source code from GitHub.
+2. **Version Update:** Automatically increments the application version.
+3. **Build and Test:** Runs Maven to compile the application, package it, and execute tests.
+4. **Docker Build:** Creates a Docker image of the application.
+5. **Docker Push:** Publishes the image to Docker Hub.
+6. **GitHub Update:** Commits the updated version information and pushes it to GitHub.
+
+## Project Repository
+
+GitHub: https://github.com/mabialachance/DevOpsProjects
+
+Branch: `jenkins-jobs`
+
+## Docker Image
+
+The application image is published to Docker Hub:
+
+**Image:** `mabialachance/my-demo-app`
+
+Image tags follow this format:
+
+```text
+<VERSION>-<BUILD_NUMBER>
+```
+
+Example:
+
+```bash
+docker pull mabialachance/my-demo-app:1.1.9-28
+```
+
+## Run the Application
+
+Pull the Docker image:
+
+```bash
+docker pull mabialachance/my-demo-app:1.1.9-28
+```
+
+Run the container:
+
+```bash
+docker run -d \
+  --name my-demo-app \
+  -p 8080:8080 \
+  mabialachance/my-demo-app:1.1.9-28
+```
+
+Adjust the port mapping if the application uses a different container port.
+
+## Build Locally
+
+Clone the repository:
+
+```bash
+git clone -b jenkins-jobs https://github.com/mabialachance/DevOpsProjects.git
+```
+
+Navigate to the Maven project directory:
+
+```bash
+cd DevOpsProjects/java-maven-app
+```
+
+Build and test:
+
+```bash
+mvn clean package
+```
+
+## Pipeline Results
+
+The Jenkins pipeline successfully completed the following tasks:
+
+- Maven build completed successfully.
+- Automated tests passed.
+- Docker image was built successfully.
+- Docker image was pushed to Docker Hub.
+- Updated application version was committed and pushed to GitHub.
+
+Example successful build:
+
+| Item | Result |
+|---|---|
+| Jenkins Build | #28 |
+| Application Version | 1.1.9 |
+| Docker Image | `mabialachance/my-demo-app:1.1.9-28` |
+| Build Status | SUCCESS |
+
+## Future Improvements
+
+- Automate deployment to a Linux server.
+- Add application health checks.
+- Implement automated rollback.
+- Configure build notifications.
+- Add automated pipeline triggers.
+
+## Author
+
+**GitHub:** [mabialachance](https://github.com/mabialachance)
+
