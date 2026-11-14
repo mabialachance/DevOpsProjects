@@ -1,9 +1,0 @@
-node_modules
-
-.DS_Store
-
-.idea/*
-mongo.yaml
-.mongo.yaml
-.env
-.env

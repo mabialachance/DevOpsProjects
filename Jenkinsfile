@@ -3,11 +3,7 @@ def gv
 pipeline {
     agent any
     tools {
-<<<<<<< HEAD:Jenkinsfile
         maven 'maven-3.9'
-=======
-        maven "Maven-3.9"
->>>>>>> f38d9e0624c7fc8c52d474303a25054afc6af2e0:jenkins/Jenkinsfile
     }
     stages {
         stage('increment version') {
@@ -35,11 +31,7 @@ pipeline {
             steps {
                 script {
                     echo "building the docker image..."
-<<<<<<< HEAD:Jenkinsfile
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-repos', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
-=======
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
->>>>>>> f38d9e0624c7fc8c52d474303a25054afc6af2e0:jenkins/Jenkinsfile
                         sh "docker build -t mabialachance/my-demo-app:${IMAGE_NAME} ."
                         sh 'echo $PASS | docker login -u $USERNAME --password-stdin'
                         sh "docker push mabialachance/my-demo-app:${IMAGE_NAME}"
