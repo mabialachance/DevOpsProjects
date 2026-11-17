@@ -123,7 +123,7 @@ docker pull 192.168.*.*:8083/my-demo-ap:jma-1.1
 
 
 ## PROJECT II - BUILD AUTOMATION PIPELINE JOB ##
-``` Instructios used to build the project:```
+``` Instructions used to build the project:```
 
 
 # Java Maven Application – Jenkins CI/CD Pipeline
