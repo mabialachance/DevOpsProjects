@@ -56,7 +56,10 @@ pipeline {
                     sh 'git branch'
 
                     sh 'git add .'
+                    sh 'git add pom.xml'
                     sh 'git commit -m "ci: version bump"'
+                    sh 'git fetch origin jenkins-jobs'
+                    sh 'git rebase FETCH_HEAD'
 
                     withCredentials([gitUsernamePassword(
                         credentialsId: 'github-credentials',
