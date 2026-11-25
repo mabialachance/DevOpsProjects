@@ -1,4 +1,4 @@
-def gv
+@Library('jenkins-shared-library') _
 
 pipeline {
     agent any
@@ -30,12 +30,7 @@ pipeline {
         stage('build image') {
             steps {
                 script {
-                    echo "building the docker image..."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repos', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
-                        sh "docker build -t mabialachance/my-demo-app:${IMAGE_NAME} ."
-                        sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
-                        sh "docker push mabialachance/my-demo-app:${IMAGE_NAME}"
-                    }
+                    buildImage("mabialachance/my-demo-app:${IMAGE_NAME}")
                 }
             }
         }
@@ -55,16 +50,15 @@ pipeline {
                     sh 'git status'
                     sh 'git branch'
 
-                    sh 'git add .'
                     sh 'git add pom.xml'
                     sh 'git commit -m "ci: version bump"'
-                    sh 'git fetch origin jenkins-jobs'
-                    sh 'git rebase FETCH_HEAD'
 
                     withCredentials([gitUsernamePassword(
                         credentialsId: 'github-credentials',
                         gitToolName: 'Default'
                     )]) {
+                        sh 'git fetch origin jenkins-jobs'
+                        sh 'git rebase FETCH_HEAD'
                         sh 'git push origin HEAD:refs/heads/jenkins-jobs'
                     }
                 }
