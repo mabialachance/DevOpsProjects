@@ -64,9 +64,9 @@ pipeline {
                         credentialsId: 'github-credentials',
                         gitToolName: 'Default'
                     )]) {
-                        sh 'git fetch origin jenkins-jobs'
+                        sh "git fetch origin ${BRANCH_NAME}"
                         sh 'git rebase FETCH_HEAD'
-                        sh 'git push origin HEAD:refs/heads/jenkins-jobs'
+                        sh "git push origin HEAD:refs/heads/${BRANCH_NAME}"
                     }
                 }
             }
