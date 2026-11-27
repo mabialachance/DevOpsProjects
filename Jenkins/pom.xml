@@ -6,11 +6,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>java-maven-app</artifactId>
-<<<<<<< HEAD
-    <version>1.1.17</version>
-=======
     <version>1.1.26</version>
->>>>>>> c9e6ae218647c1eeb62407fe1e346dac663d65c4
 
     <build>
         <plugins>
