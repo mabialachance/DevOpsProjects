@@ -1,3 +1,4 @@
+
 @Library('jenkins-shared-library') _
 
 pipeline {
@@ -63,9 +64,9 @@ pipeline {
                         credentialsId: 'github-credentials',
                         gitToolName: 'Default'
                     )]) {
-                        sh "git fetch origin ${env.BRANCH_NAME ?: 'jenkins-jobs'}"
+                        sh "git fetch origin ${BRANCH_NAME}"
                         sh 'git rebase FETCH_HEAD'
-                        sh "git push origin HEAD:refs/heads/${env.BRANCH_NAME ?: 'jenkins-jobs'}"
+                        sh "git push origin HEAD:refs/heads/${BRANCH_NAME}"
                     }
                 }
             }
