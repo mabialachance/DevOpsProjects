@@ -6,11 +6,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>java-maven-app</artifactId>
-<<<<<<< HEAD
-    <version>-DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} \</version>
-=======
     <version>1.1.36</version>
->>>>>>> 609f864ce3f20f87657d181207af586c50d37d30
 
     <build>
         <plugins>
